@@ -19,42 +19,45 @@ public class ProductServiceImpl implements ProductService {
 	private iProductRepository productRepo;
 	
 	@Override
-	public Product addProduct(Product product) {
-//		Product productEntity;
-//		if(product == null)
-//		{
-//			productEntity = null;
-//		}
-//		else
-//		{
-//			productEntity = productRepo.save(product);
-//		}
-//		return ProductUtils.convertToProductDto(productEntity);
-		return productRepo.save(product);
+	public ProductDTO addProduct(Product product) {
+		Product productEntity;
+		if(product == null)
+		{
+			productEntity = null;
+		}
+		else
+		{
+			productEntity = productRepo.save(product);
+		}
+		return ProductUtils.convertToProductDto(productEntity);
+//		return productRepo.save(product);
 	}
 
 	@Override
-	public ProductDTO updateProduct(ProductDTO product) throws ProductNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+	public ProductDTO updateProduct(Product product) { // throws ProductNotFoundException {
+		Product productEntity;
+		Product productExist = productRepo.findById(product.getProductId()).get();
+		productEntity = productRepo.save(product);
+		return ProductUtils.convertToProductDto(productEntity);
 	}
 
 	@Override
-	public ProductDTO cancelProduct(int productId) throws ProductNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+	public ProductDTO deleteProduct(int productId) { // throws ProductNotFoundException {
+		Product productExist = productRepo.findById(productId).get();
+		productRepo.delete(productExist);
+		return ProductUtils.convertToProductDto(productExist);
 	}
 
 	@Override
-	public List<ProductDTO> showAllProducts(int productId) {
-		// TODO Auto-generated method stub
-		return null;
+	public ProductDTO showProductById(int productId) {
+		Product productExist = productRepo.findById(productId).get();
+		return ProductUtils.convertToProductDto(productExist);
 	}
 
 	@Override
 	public List<ProductDTO> showAllProducts() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Product> productsList = productRepo.findAll();
+		return ProductUtils.convertToProductDtoList(productsList);
 	}
 
 	

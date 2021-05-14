@@ -1,9 +1,15 @@
 package com.cg.onlinesweetmartapplication.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,12 +26,32 @@ public class ProductController {
 	private ProductService productService;
 	
 	@PostMapping(value="/addProduct")
-	public Product addProduct(@RequestBody Product product)
+	public ProductDTO addProduct(@RequestBody Product product)
 	{
-//		ProductDTO productdto = null;
-//		ResponseEntity<Object> productResponse = null;
-//		productdto = productService.addProduct(product);
-//		productResponse = new ResponseEntity<>(productDTO, HttpStatus.ACCEPTED);
 		return productService.addProduct(product);
+	}
+	
+	@GetMapping(value="/viewAllProducts")
+	public List<ProductDTO> showAllProducts()
+	{
+		return (List<ProductDTO>) productService.showAllProducts();
+	}
+	
+	@GetMapping(value="/viewProduct/{id}")
+	public ProductDTO showProductById(@PathVariable int id)
+	{
+		return productService.showProductById(id);
+	}
+	
+	@PutMapping(value="/updateProduct")
+	public ProductDTO updateProduct(@RequestBody Product product)
+	{
+		return productService.updateProduct(product);
+	}
+	
+	@DeleteMapping(value="/deleteProduct/{id}")
+	public ProductDTO deleteProduct(@PathVariable int id)
+	{
+		return productService.deleteProduct(id);
 	}
 }

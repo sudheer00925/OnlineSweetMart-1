@@ -9,10 +9,10 @@ import com.cg.onlinesweetmartapplication.model.ProductDTO;
 
 public interface ProductService{
 
-	public Product addProduct(Product product);
-	public ProductDTO updateProduct(ProductDTO product) throws ProductNotFoundException;
-	public ProductDTO cancelProduct(int productId) throws ProductNotFoundException;
-	public List<ProductDTO> showAllProducts(int productId);
+	public ProductDTO addProduct(Product product);
+	public ProductDTO updateProduct(Product product);// throws ProductNotFoundException;
+	public ProductDTO deleteProduct(int productId); //throws ProductNotFoundException;
+	public ProductDTO showProductById(int productId);
 	public List<ProductDTO> showAllProducts();
 	
 }
