@@ -8,6 +8,7 @@ public class OnlinesweetmartapplicationApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(OnlinesweetmartapplicationApplication.class, args);
-	}
 
+		System.out.println("Service started at port 8081");
+	}
 }

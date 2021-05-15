@@ -1,5 +1,6 @@
 package com.cg.onlinesweetmartapplication.model;
 
+
 import org.springframework.stereotype.Component;
 
 @Component
@@ -32,6 +33,5 @@ public class CategoryDTO {
 	public String toString() {
 		return "CategoryDTO [productId=" + productId + ", name=" + name + "]";
 	}
-	
-	
 }
+	

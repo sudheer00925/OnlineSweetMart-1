@@ -1,6 +1,7 @@
 package com.cg.onlinesweetmartapplication.service;
 
 import java.util.List;
+
 import java.util.Optional;
 
 import com.cg.onlinesweetmartapplication.entity.Category;
@@ -23,5 +24,8 @@ public interface CategoryService  {
 	List<Category> showAllCategories() throws CategoryNotFoundException;
 
 	Optional<Category> findByCategoryId(int categoryId) throws CategoryNotFoundException;
+
+
+
 
 }
