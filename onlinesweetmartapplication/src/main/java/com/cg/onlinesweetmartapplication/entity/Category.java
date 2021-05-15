@@ -44,4 +44,9 @@ public class Category {
 		return "Category [categoryId=" + categoryId + ", name=" + name + "]";
 	}
 
+	public static Category get() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

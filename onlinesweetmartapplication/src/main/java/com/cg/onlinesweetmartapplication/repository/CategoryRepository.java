@@ -1,15 +1,24 @@
 package com.cg.onlinesweetmartapplication.repository;
 
-import java.util.List;
-
+import java.util.Optional;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 import com.cg.onlinesweetmartapplication.entity.Category;
-import com.cg.onlinesweetmartapplication.exceptions.CategoryNotFoundException;
 
-public interface CategoryRepository  {
+@Repository
+public interface CategoryRepository extends JpaRepository<Category,Integer> {
+	
+	@Query("from Category where :categoryid=categoryId")
+	Optional<Category> findById(Category categoryid);
 
-	public Category addCategory(Category Category);
-	public Category updateCategory(Category Category) throws CategoryNotFoundException;
-	public Category cancelCategory(int CategoryId) throws CategoryNotFoundException;
-	public List<Category> showAllCategorys();
-
+	
 }
+//public Category addCategory(Category Category);
+//public Category updateCategory(Category Category) throws CategoryNotFoundException;
+//public Category cancelCategory(int CategoryId) throws CategoryNotFoundException;
+//public List<Category> showAllCategorys();
+
+
+
+
