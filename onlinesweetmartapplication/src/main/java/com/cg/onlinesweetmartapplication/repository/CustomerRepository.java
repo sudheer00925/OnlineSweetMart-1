@@ -1,8 +1,8 @@
 package com.cg.onlinesweetmartapplication.repository;
 
 import java.util.List;
+import java.util.Optional;
 
-<<<<<<< HEAD
 import com.cg.onlinesweetmartapplication.entity.Customer;
 import com.cg.onlinesweetmartapplication.exceptions.CustomerNotFoundException;
 
@@ -13,17 +13,14 @@ public interface CustomerRepository {
 	public Customer cancelCustomer(int CustomerId) throws CustomerNotFoundException;
 	public List<Customer> showAllCustomers();
 	public List<Customer> showAllCustomers(int CustomerdId);
-=======
-import com.cg.onlinesweetmartapplication.exceptions.CustomerNotFoundException;
-import com.cg.onlinesweetmartapplication.model.CustomerDTO;
+	public Customer save(Customer customer);
+	public boolean existsById(int customerId);
+	public Optional<Customer> findById(int customerId);
+	public void saveAndFlush(Customer customer1);
+	public void deleteById(int customerId);
+	public List<Customer> findAll();
+	public Optional<Customer> findCustomerByName(String customerName);
 
-public interface CustomerRepository {
-	
-	public CustomerDTO addCustomer(CustomerDTO Customer);
-	public CustomerDTO updateCustomer(CustomerDTO Customer) throws CustomerNotFoundException;
-	public CustomerDTO cancelCustomer(int CustomerId) throws CustomerNotFoundException;
-	public List<CustomerDTO> showAllCustomers();
-	public List<CustomerDTO> showAllCustomers(int CustomerdId);
->>>>>>> branch 'master' of https://github.com/sudheer00925/OnlineSweetMart-1.git
+
 
 }

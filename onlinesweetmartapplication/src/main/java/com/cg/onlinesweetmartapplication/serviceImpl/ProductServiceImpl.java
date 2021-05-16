@@ -60,5 +60,18 @@ public class ProductServiceImpl implements ProductService {
 		return ProductUtils.convertToProductDtoList(productsList);
 	}
 
+	@Override
+	public com.cg.onlinesweetmartapplication.entity.Product cancelProduct(int productId)
+			throws ProductNotFoundException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<com.cg.onlinesweetmartapplication.entity.Product> showAllProducts(int productId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 }

@@ -1,5 +1,7 @@
 package com.cg.onlinesweetmartapplication.entity;
 
+
+
 public class Product {
 	
     private Integer productId;
@@ -8,7 +10,6 @@ public class Product {
     private Double price;
     private String description;
     private Boolean available = true;
-    private Category category;
     private Product product;
 
 }
