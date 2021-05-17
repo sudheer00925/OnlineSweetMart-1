@@ -2,7 +2,6 @@ package com.cg.onlinesweetmartapplication.entity;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -11,8 +10,6 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import org.apache.tomcat.jni.Address;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-//import com.cg.osm.entity.SweetOrder;
 
 @Entity
 public class Customer {
@@ -28,14 +25,11 @@ public class Customer {
 	private String email;
 	@Column(name="Address")
 	@Autowired
-	@Embedded
-	//@Cascade(CascadeType.ALL)
+
 	@Valid
 	private Address address;
 	@OneToMany(mappedBy = "customer")
 	@ElementCollection(targetClass = SweetOrder.class)
-	@JsonManagedReference
-	//@Cascade(CascadeType.ALL)
 	private List<SweetOrder> sweetOrders;
 	public Customer() {
 	}
@@ -97,12 +91,5 @@ public class Customer {
 				+ sweetOrders + "]";
 	}
 
-	
-	
-	/*
-    private Long userId;
-    private String username;
-    private Set<SweetOrder> sweetOrders;
-    private List<SweetItem> sweetItems;
-	private Cart cart;*/
+
 }

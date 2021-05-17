@@ -1,38 +1,72 @@
 package com.cg.onlinesweetmartapplication.controller;
 
+import java.util.List;
+import javax.validation.Valid;
+import org.apache.tomcat.jni.Address;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.cg.onlinesweetmartapplication.entity.Customer;
+import com.cg.onlinesweetmartapplication.exceptions.CustomerNotFoundException;
+import com.cg.onlinesweetmartapplication.exceptions.ProductNotFoundException;
+import com.cg.onlinesweetmartapplication.model.CustomerDTO;
+import com.cg.onlinesweetmartapplication.model.ProductDTO;
 import com.cg.onlinesweetmartapplication.service.CustomerService;
+import com.cg.onlinesweetmartapplication.serviceImpl.CustomerServiceImpl;
+import com.sun.el.stream.Optional;
 
 @RestController
 public class CustomerController {
+	
 	@Autowired
-	private CustomerService customerService;
-	
-	@PostMapping(value="/addCustomer")
-	public Customer addCustomer(@RequestBody Customer customer)
-	{
-		return customerService.addCustomer(customer);
+	private CustomerServiceImpl customerservice;
+
+	@PostMapping(path = "/customer")
+	public Customer addCustomer(@RequestBody @Valid Customer customer) {
+		return customerservice.addCustomer(customer);
 	}
-	/*@GetMapping(value="/viewCustomer/{id}")
-	public CustomerDTO showCustomerById(@PathVariable int id)
-	{
-		return customerService.findCustomerById(id);
+
+	
+	@DeleteMapping(path = "/customer/{customerId}")
+	public String deleteCustomer(@PathVariable int customerId) throws CustomerNotFoundException {
+		return customerservice.deleteCustomer(customerId);
 	}
+
 	
-	@PutMapping(value="/updateProduct")
-	public ProductDTO updateProduct(@RequestBody Customer customer ) throws ProductNotFoundException
-	{
-		return customerService.updateCustomer(customer);
+	@GetMapping(path = "/customer")
+	public List<Customer> showAllCustomers() throws CustomerNotFoundException {
+		return customerservice.showAllCustomers();
 	}
+
 	
-	@DeleteMapping(value="/deleteCustomer/{id}")
-	public CustomerDTO deleteCustomer(@PathVariable int id)
-	{
-		return customerService.deleteCustomer(id);
-	}*/
+	@PutMapping(path = "/customer")
+	public Customer updateCustomer(@RequestBody @Valid Customer customer) throws CustomerNotFoundException {
+		return customerservice.updateCustomer(customer);
+	}
+
 	
+	
+	@PutMapping(path = "/customer/addr/{customerId}")
+	public Customer UpdateAddress(@RequestBody @Valid Address address, @PathVariable("customerId") int customerId)
+			throws CustomerNotFoundException {
+		return customerservice.updateAddress(address, customerId);
+	}
+/*
+	@GetMapping(path = "/customer/{customerId}")
+	public Customer findCustomerById(@PathVariable("customerId") int CustomerId) throws CustomerNotFoundException {
+		Optional<Customer> result = customerservice.findCustomerById(CustomerId);
+		return result.get();
+
+	}
+	@GetMapping(path = "/customer/name/{username}")
+	public Customer findCustomerByName(@PathVariable("username") String username) throws CustomerNotFoundException {
+		Optional<Customer> customer = customerservice.findCustomerByName(username);
+		return customer.get();
+	}
+	*/
 }

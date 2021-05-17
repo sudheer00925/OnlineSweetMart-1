@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.cg.onlinesweetmartapplication.entity.Customer;
 import com.cg.onlinesweetmartapplication.exceptions.CustomerNotFoundException;
-import com.cg.onlinesweetmartapplication.model.ProductDTO;
 import com.cg.onlinesweetmartapplication.repository.CustomerRepository;
 import com.cg.onlinesweetmartapplication.service.CustomerService;
 
@@ -87,9 +86,5 @@ public class CustomerServiceImpl implements CustomerService{
 			throw new CustomerNotFoundException("No customer record with the name= " + CustomerName);
 		}
 	}
-	@Override
-	public List<Customer> showAllCustomers(int CustomerdId) throws CustomerNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 }

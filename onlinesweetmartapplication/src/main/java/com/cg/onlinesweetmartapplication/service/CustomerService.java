@@ -3,9 +3,9 @@ package com.cg.onlinesweetmartapplication.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.tomcat.jni.Address;
 import com.cg.onlinesweetmartapplication.entity.Customer;
 import com.cg.onlinesweetmartapplication.exceptions.CustomerNotFoundException;
-import com.cg.onlinesweetmartapplication.model.ProductDTO;
 
 public interface CustomerService {
 
@@ -17,9 +17,13 @@ public interface CustomerService {
 	
 	public List<Customer> showAllCustomers() throws CustomerNotFoundException;
 	
-	public List<Customer> showAllCustomers(int CustomerdId) throws CustomerNotFoundException;
+	public Optional<Customer> findCustomerById(int CustomerId) throws CustomerNotFoundException;	
+	
+	public Customer updateAddress(Address address, int customerId) throws CustomerNotFoundException;
 
-	Optional<Customer> findCustomerById(int CustomerId) throws CustomerNotFoundException;	
+	public Optional<Customer> findCustomerByName(String name) throws CustomerNotFoundException;
+
+	
 
 
 	
